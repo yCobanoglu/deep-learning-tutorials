@@ -1,6 +1,9 @@
 #https://pytorch.org/tutorials/intermediate/char_rnn_classification_tutorial.html
 import glob
+import math
 import os
+import random
+import time
 
 import unicodedata
 import string
@@ -49,6 +52,16 @@ def lineToTensor(line):
     for li, letter in enumerate(line):
         tensor[li][0][letterToIndex(letter)] = 1
     return tensor
+
+def randomChoice(l):
+    return l[random.randint(0, len(l) - 1)]
+
+def timeSince(since):
+    now = time.time()
+    s = now - since
+    m = math.floor(s / 60)
+    s -= m * 60
+    return '%dm %ds' % (m, s)
 
 
 if __name__ == "__main__":

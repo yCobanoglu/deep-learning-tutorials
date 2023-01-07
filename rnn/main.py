@@ -1,5 +1,3 @@
-import math
-import random
 import time
 
 import matplotlib.pyplot as plt
@@ -7,11 +5,8 @@ import torch
 from torch import nn
 
 from rnn.model import RNN
-from rnn.util import n_letters, load_data, lineToTensor
+from rnn.util import n_letters, load_data, lineToTensor, randomChoice, timeSince
 
-
-def randomChoice(l):
-    return l[random.randint(0, len(l) - 1)]
 
 def randomTrainingExample():
     category = randomChoice(all_categories)
@@ -26,12 +21,6 @@ def categoryFromOutput(output):
     category_i = top_i[0].item()
     return all_categories[category_i], category_i
 
-def timeSince(since):
-    now = time.time()
-    s = now - since
-    m = math.floor(s / 60)
-    s -= m * 60
-    return '%dm %ds' % (m, s)
 
 def train(category_tensor, line_tensor):
     hidden = rnn.initHidden()
@@ -55,9 +44,7 @@ def evaluate(line_tensor):
 
     for i in range(line_tensor.size()[0]):
         output, hidden = rnn(line_tensor[i], hidden)
-
     return output
-
 
 
 if __name__ == "__main__":
