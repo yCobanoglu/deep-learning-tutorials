@@ -70,7 +70,7 @@ if __name__ == "__main__":
 
     learning_rate = 0.005
     criterion = nn.NLLLoss()
-    n_iters = 100000
+    n_iters = 10000
     print_every = 5000
     plot_every = 1000
 
